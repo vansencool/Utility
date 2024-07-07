@@ -41,7 +41,7 @@ public class PluginUtils {
         logger.log(Level.FINE, message);
     }
 
-    public static void save(String fileName, boolean replace) {
+    public static void save(@NotNull String fileName, boolean replace) {
         plugin.saveResource(fileName, replace);
     }
 
