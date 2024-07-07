@@ -73,7 +73,7 @@ public class BossBarManager {
         private BossBar.Color color = BossBar.Color.WHITE;
         private BossBar.Overlay overlay = BossBar.Overlay.PROGRESS;
         private float progress = 1.0f;
-        private Set<BossBar.Flag> flags = new HashSet<>();
+        private final Set<BossBar.Flag> flags = new HashSet<>();
 
         public Builder player(Player player) {
             this.player = player;
