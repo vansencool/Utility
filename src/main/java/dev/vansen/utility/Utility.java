@@ -1,5 +1,6 @@
 package dev.vansen.utility;
 
+import dev.vansen.utility.listeners.ListenerRegister;
 import dev.vansen.utility.resource.ResourceUtils;
 import dev.vansen.utility.tasks.scheduler.TaskUtils;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,7 @@ public abstract class Utility extends JavaPlugin {
 
         }
         ResourceUtils.saveYmlFiles();
+        ListenerRegister.registerListeners();
     }
 
     @Override
