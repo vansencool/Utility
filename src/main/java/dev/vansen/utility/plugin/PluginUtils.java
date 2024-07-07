@@ -42,10 +42,7 @@ public class PluginUtils {
     }
 
     public static void save(String fileName, boolean replace) {
-        File file = new File(pluginFolder(), fileName);
-        if (!file.exists()) {
-            plugin.saveResource(fileName, replace);
-        }
+        plugin.saveResource(fileName, replace);
     }
 
     public static void save(@NotNull String fileName) {
