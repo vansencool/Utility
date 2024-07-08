@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.time.Duration;
 
 public class TitleSender {
+
     public static void sendTitle(@NotNull Player player, @NotNull String titleMessage, @NotNull String subtitleMessage, int fadeIn, int stay, int fadeOut) {
         Component titleComponent = Deserializer.deserialize(titleMessage);
         Component subtitleComponent = Deserializer.deserialize(subtitleMessage);

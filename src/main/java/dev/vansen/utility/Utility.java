@@ -1,5 +1,6 @@
 package dev.vansen.utility;
 
+import dev.vansen.utility.commands.CommandsManager;
 import dev.vansen.utility.listeners.ListenerRegister;
 import dev.vansen.utility.resource.ResourceUtils;
 import dev.vansen.utility.tasks.scheduler.TaskUtils;
@@ -16,6 +17,7 @@ public abstract class Utility extends JavaPlugin {
 
         }
         ResourceUtils.saveYmlFiles();
+        new CommandsManager();
         ListenerRegister.registerListeners();
     }
 

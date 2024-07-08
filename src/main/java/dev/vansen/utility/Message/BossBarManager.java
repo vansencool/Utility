@@ -75,22 +75,22 @@ public class BossBarManager {
         private float progress = 1.0f;
         private final Set<BossBar.Flag> flags = new HashSet<>();
 
-        public Builder player(Player player) {
+        public Builder player(@NotNull Player player) {
             this.player = player;
             return this;
         }
 
-        public Builder title(String title) {
+        public Builder title(@NotNull String title) {
             this.title = title;
             return this;
         }
 
-        public Builder color(BossBar.Color color) {
+        public Builder color(@NotNull BossBar.Color color) {
             this.color = color;
             return this;
         }
 
-        public Builder overlay(BossBar.Overlay overlay) {
+        public Builder overlay(@NotNull BossBar.Overlay overlay) {
             this.overlay = overlay;
             return this;
         }
@@ -100,7 +100,7 @@ public class BossBarManager {
             return this;
         }
 
-        public Builder flag(BossBar.Flag flag) {
+        public Builder flag(@NotNull BossBar.Flag flag) {
             this.flags.add(flag);
             return this;
         }

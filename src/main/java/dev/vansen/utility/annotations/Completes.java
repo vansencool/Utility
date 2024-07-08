@@ -1,0 +1,9 @@
+package dev.vansen.utility.annotations;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Completes {
+    String value();
+}
