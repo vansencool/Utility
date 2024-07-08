@@ -9,10 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class TaskUtils {
@@ -72,13 +70,9 @@ public class TaskUtils {
             return runTimer(task, delayMillis, periodMillis, TimeUnit.MILLISECONDS);
         }
 
-        public CompletableFuture<Void> when(@NotNull String taskId, @NotNull String timeFormat) {
-            return CompletableFuture.runAsync(() -> {
-                long delayMillis = TimeConverter.convertToMillis(timeFormat, Long.parseLong(taskId));
-                long delayTicks = convertMillisToTicks(delayMillis);
-                String formattedTime = formatTime(timeFormat, delayMillis);
-                plugin.getLogger().log(Level.INFO, "Task " + taskId + " will run in " + formattedTime);
-            });
+        public String when(@NotNull String taskId, @NotNull String timeFormat) {
+            long delayMillis = TimeConverter.convertToMillis(timeFormat, Long.parseLong(taskId));
+            return formatTime(timeFormat, delayMillis);
         }
 
         public void cancelAll() {
@@ -125,7 +119,7 @@ public class TaskUtils {
             }
         }
 
-        private void runForPlayers(Predicate<Player> predicate, Runnable task, int playerCount) {
+        private void runForPlayers(@NotNull Predicate<Player> predicate, @NotNull Runnable task, int playerCount) {
             var players = Bukkit.getOnlinePlayers()
                     .stream()
                     .filter(predicate)
