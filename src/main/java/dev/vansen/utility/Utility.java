@@ -16,7 +16,7 @@ public abstract class Utility extends JavaPlugin {
         } catch (NoSuchMethodException ignored) {
 
         }
-        ResourceUtils.saveYmlFiles();
+        ResourceUtils.saveFiles();
         new CommandsManager();
         ListenerRegister.registerListeners();
     }
@@ -48,6 +48,10 @@ public abstract class Utility extends JavaPlugin {
     }
 
     protected void onL() {
+
+    }
+
+    protected void onReload() {
 
     }
 
