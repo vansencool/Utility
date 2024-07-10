@@ -1,9 +1,9 @@
 package dev.vansen.utility;
 
 import dev.vansen.utility.commands.CommandsManager;
+import dev.vansen.utility.fixingaissue.scheduler.TaskUtils;
 import dev.vansen.utility.listeners.ListenerRegister;
 import dev.vansen.utility.resource.ResourceUtils;
-import dev.vansen.utility.tasks.scheduler.TaskUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class Utility extends JavaPlugin {
