@@ -7,13 +7,25 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class Utility extends JavaPlugin {
 
+    private boolean wasReloaded = false;
+
     @Override
     public void onEnable() {
-        try {
-            getClass().getDeclaredMethod("onStart");
-            onStart();
-        } catch (NoSuchMethodException ignored) {
+        if (wasReloaded) {
+            try {
+                getClass().getDeclaredMethod("onReload");
+                onReload();
+            } catch (NoSuchMethodException ignored) {
 
+            }
+            wasReloaded = false;
+        } else {
+            try {
+                getClass().getDeclaredMethod("onStart");
+                onStart();
+            } catch (NoSuchMethodException ignored) {
+
+            }
         }
         ResourceUtils.saveFiles();
         ListenerRegister.registerListeners();
@@ -21,6 +33,10 @@ public abstract class Utility extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (this.isEnabled()) {
+            wasReloaded = true;
+        }
+
         try {
             getClass().getDeclaredMethod("onStop");
             onStop();
@@ -37,7 +53,6 @@ public abstract class Utility extends JavaPlugin {
             getClass().getDeclaredMethod("onL");
             onL();
         } catch (NoSuchMethodException ignored) {
-
         }
     }
 
