@@ -1,4 +1,4 @@
-package dev.vansen.utility.fixingaissue.scheduler;
+package dev.vansen.utility.tasks.scheduler;
 
 public enum TaskCondition {
     PLAYER_KILLS,

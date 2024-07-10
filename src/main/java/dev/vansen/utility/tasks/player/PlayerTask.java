@@ -1,4 +1,4 @@
-package dev.vansen.utility.fixingaissue.player;
+package dev.vansen.utility.tasks.player;
 
 import org.bukkit.entity.Player;
 
