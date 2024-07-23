@@ -2,7 +2,6 @@ package dev.vansen.utility;
 
 import dev.vansen.utility.listeners.ListenerRegister;
 import dev.vansen.utility.resource.ResourceUtils;
-import dev.vansen.utility.tasks.scheduler.TaskUtils;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,8 +27,6 @@ public abstract class Utility extends JavaPlugin implements Listener {
         } catch (NoSuchMethodException ignored) {
 
         }
-
-        TaskUtils.getScheduler().cancelAll();
     }
 
     @Override
