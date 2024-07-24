@@ -33,10 +33,12 @@ public class ResourceUtils {
                 }
 
                 if (entryName.endsWith(".yml") || entryName.endsWith(".yaml") || entryName.endsWith(".txt") || entryName.endsWith(".md") || entryName.endsWith(".json") || entryName.endsWith(".text")) {
-                    InputStream inputStream = zipFile.getInputStream(entry);
                     File outFile = new File(PluginUtils.pluginFolder(), entryName);
-                    cDirectories(outFile);
-                    copy(inputStream, outFile);
+                    if (!outFile.exists()) {
+                        InputStream inputStream = zipFile.getInputStream(entry);
+                        cDirectories(outFile);
+                        copy(inputStream, outFile);
+                    }
                 }
             }
             zipFile.close();

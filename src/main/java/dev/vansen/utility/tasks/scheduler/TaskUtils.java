@@ -96,7 +96,7 @@ public class TaskUtils {
             }
         }
 
-        private void runForPlayers(@NotNull Predicate<Player> predicate, @NotNull Runnable task, int playerCount) {
+        public void runForPlayers(@NotNull Predicate<Player> predicate, @NotNull Runnable task, int playerCount) {
             var players = Bukkit.getOnlinePlayers()
                     .stream()
                     .filter(predicate)
