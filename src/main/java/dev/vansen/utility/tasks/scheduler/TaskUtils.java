@@ -2,7 +2,6 @@ package dev.vansen.utility.tasks.scheduler;
 
 import dev.vansen.utility.PluginHolder;
 import dev.vansen.utility.Utility;
-import dev.vansen.utility.tc.TimeConverter;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
@@ -41,7 +40,8 @@ public class TaskUtils {
         }
 
         public BukkitTask runLater(@NotNull Runnable task, long delay, @NotNull TimeUnit timeUnit) {
-            long ticks = convertMillisToTicks(TimeConverter.convertToMillis(timeUnit.name(), delay));
+            long delayMillis = timeUnit.toMillis(delay);
+            long ticks = convertMillisToTicks(delayMillis);
             if (async) {
                 return Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, task, ticks);
             } else {
@@ -49,14 +49,11 @@ public class TaskUtils {
             }
         }
 
-        public BukkitTask runLater(@NotNull Runnable task, @NotNull String timeUnit, long duration) {
-            long delay = TimeConverter.convertToMillis(timeUnit, duration);
-            return runLater(task, delay, TimeUnit.MILLISECONDS);
-        }
-
         public BukkitTask runTimer(@NotNull Runnable task, long delay, long period, @NotNull TimeUnit timeUnit) {
-            long delayTicks = convertMillisToTicks(TimeConverter.convertToMillis(timeUnit.name(), delay));
-            long periodTicks = convertMillisToTicks(TimeConverter.convertToMillis(timeUnit.name(), period));
+            long delayMillis = timeUnit.toMillis(delay);
+            long periodMillis = timeUnit.toMillis(period);
+            long delayTicks = convertMillisToTicks(delayMillis);
+            long periodTicks = convertMillisToTicks(periodMillis);
             if (async) {
                 return Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, task, delayTicks, periodTicks);
             } else {
@@ -64,32 +61,14 @@ public class TaskUtils {
             }
         }
 
-        public BukkitTask runTimer(@NotNull Runnable task, @NotNull String timeUnit, long delay, long period) {
-            long delayMillis = TimeConverter.convertToMillis(timeUnit, delay);
-            long periodMillis = TimeConverter.convertToMillis(timeUnit, period);
-            return runTimer(task, delayMillis, periodMillis, TimeUnit.MILLISECONDS);
-        }
-
-        public String when(@NotNull String taskId, @NotNull String timeFormat) {
-            long delayMillis = TimeConverter.convertToMillis(timeFormat, Long.parseLong(taskId));
-            return formatTime(timeFormat, delayMillis);
-        }
-
-        public void cancelAll() {
-            Bukkit.getScheduler().cancelTasks(plugin);
-        }
-
-        public void cancelTask(@NotNull BukkitTask task) {
-            task.cancel();
-        }
-
         public void repeatForever(@NotNull Runnable task, long period, @NotNull TimeUnit timeUnit) {
             runTimer(task, 0, period, timeUnit);
         }
 
-        public void repeatForUnit(@NotNull Runnable task, @NotNull String timeUnit, long duration, long period) {
-            long delay = TimeConverter.convertToMillis(timeUnit, duration);
-            runTimer(task, delay, period, TimeUnit.MILLISECONDS);
+        public void repeatForUnit(@NotNull Runnable task, long duration, @NotNull TimeUnit durationUnit, long period, @NotNull TimeUnit periodUnit) {
+            long durationMillis = durationUnit.toMillis(duration);
+            long periodMillis = periodUnit.toMillis(period);
+            runTimer(task, durationMillis, periodMillis, TimeUnit.MILLISECONDS);
         }
 
         public void runConditional(@NotNull Runnable task, @NotNull TaskCondition condition, @NotNull Predicate<Object> predicate, int playerCount) {
