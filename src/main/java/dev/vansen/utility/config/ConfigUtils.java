@@ -21,8 +21,8 @@ import java.util.logging.Level;
 
 public class ConfigUtils {
     private final Utility plugin;
-    private FileConfiguration config;
     private final File configFile;
+    private FileConfiguration config;
 
     private ConfigUtils(@NotNull String fileName) {
         this.plugin = PluginHolder.getPluginInstance();

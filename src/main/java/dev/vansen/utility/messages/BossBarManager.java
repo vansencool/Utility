@@ -68,12 +68,12 @@ public class BossBarManager {
     }
 
     public static class Builder {
+        private final Set<BossBar.Flag> flags = new HashSet<>();
         private Player player;
         private String title;
         private BossBar.Color color = BossBar.Color.WHITE;
         private BossBar.Overlay overlay = BossBar.Overlay.PROGRESS;
         private float progress = 1.0f;
-        private final Set<BossBar.Flag> flags = new HashSet<>();
 
         public Builder player(@NotNull Player player) {
             this.player = player;

@@ -45,6 +45,14 @@ public class InventoryUtils {
         return inventory;
     }
 
+    public static void onClose(@NotNull Consumer<InventoryCloseEvent> closeAction) {
+        InventoryCloseEventHandler.addCloseAction(closeAction);
+    }
+
+    public static void onDrag(@NotNull Consumer<InventoryDragEvent> dragAction) {
+        InventoryDragEventHandler.addDragAction(dragAction);
+    }
+
     public static class ItemBuilder {
         private final ItemStack item;
         private final ItemMeta meta;
@@ -83,14 +91,6 @@ public class InventoryUtils {
             item.setItemMeta(meta);
             return item;
         }
-    }
-
-    public static void onClose(@NotNull Consumer<InventoryCloseEvent> closeAction) {
-        InventoryCloseEventHandler.addCloseAction(closeAction);
-    }
-
-    public static void onDrag(@NotNull Consumer<InventoryDragEvent> dragAction) {
-        InventoryDragEventHandler.addDragAction(dragAction);
     }
 
     private static class InventoryListener implements Listener {
